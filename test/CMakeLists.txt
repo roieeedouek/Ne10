@@ -91,18 +91,23 @@ include_directories (
 include(../cmake/FunctionSwitch.cmake)
 
 if(NE10_ENABLE_MATH)
-    # Define math test files.
-    set(NE10_TEST_MATH_SRCS
-        ${PROJECT_SOURCE_DIR}/modules/math/test/test_main.c
-        ${PROJECT_SOURCE_DIR}/modules/math/test/test_suite_math.c
-    )
+    # Math unit tests require assembly NEON functions which are only available for armv7
+    if("${NE10_TARGET_ARCH}" STREQUAL "armv7")
+        # Define math test files.
+        set(NE10_TEST_MATH_SRCS
+            ${PROJECT_SOURCE_DIR}/modules/math/test/test_main.c
+            ${PROJECT_SOURCE_DIR}/modules/math/test/test_suite_math.c
+        )
 
-    # Math unit tests
-    add_executable("NE10_math_${NE10_TEST_OUTPUT_NAME}" ${NE10_TEST_MATH_SRCS} ${NE10_TEST_COMMON_SRCS})
-    target_link_libraries (
-        "NE10_math_${NE10_TEST_OUTPUT_NAME}"
-        ${NE10_TEST_LIBS}
-    )
+        # Math unit tests
+        add_executable("NE10_math_${NE10_TEST_OUTPUT_NAME}" ${NE10_TEST_MATH_SRCS} ${NE10_TEST_COMMON_SRCS})
+        target_link_libraries (
+            "NE10_math_${NE10_TEST_OUTPUT_NAME}"
+            ${NE10_TEST_LIBS}
+        )
+    else()
+        message("-- Skipping math unit tests for aarch64 (assembly NEON functions not available)")
+    endif()
 endif()
 
 if(NE10_ENABLE_DSP)

@@ -39,8 +39,13 @@ set(NE10_NEON_SRCS )
 
 #Tell CMake these files need to go to the C compiler
 function(set_file_to_c files)
-  set(FLAGS
-    "-x assembler-with-cpp -mfpu=neon -Wa,-I${PROJECT_SOURCE_DIR}/inc -Wa,-I${PROJECT_SOURCE_DIR}/common -Wa,-I${PROJECT_SOURCE_DIR}/modules/math" )
+  if("${NE10_TARGET_ARCH}" STREQUAL "armv7")
+    set(FLAGS
+      "-x assembler-with-cpp -mfpu=neon -Wa,-I${PROJECT_SOURCE_DIR}/inc -Wa,-I${PROJECT_SOURCE_DIR}/common -Wa,-I${PROJECT_SOURCE_DIR}/modules/math" )
+  else()
+    set(FLAGS
+      "-x assembler-with-cpp -Wa,-I${PROJECT_SOURCE_DIR}/inc -Wa,-I${PROJECT_SOURCE_DIR}/common -Wa,-I${PROJECT_SOURCE_DIR}/modules/math" )
+  endif()
   foreach(file ${${files}})
     set_property (SOURCE ${file} PROPERTY LANGUAGE C)
     set_source_files_properties(
@@ -129,31 +134,34 @@ if(NE10_ENABLE_MATH)
       endforeach(intrinsic_file)
     endif()
 
-    set(NE10_MATH_NEON_SRCS
-        ${PROJECT_SOURCE_DIR}/modules/math/NE10_abs.neon.s
-        ${PROJECT_SOURCE_DIR}/modules/math/NE10_add.neon.s
-        ${PROJECT_SOURCE_DIR}/modules/math/NE10_div.neon.s
-        ${PROJECT_SOURCE_DIR}/modules/math/NE10_len.neon.s
-        ${PROJECT_SOURCE_DIR}/modules/math/NE10_mla.neon.s
-        ${PROJECT_SOURCE_DIR}/modules/math/NE10_mul.neon.s
-        ${PROJECT_SOURCE_DIR}/modules/math/NE10_normalize.neon.s
-        ${PROJECT_SOURCE_DIR}/modules/math/NE10_sub.neon.s
-        ${PROJECT_SOURCE_DIR}/modules/math/NE10_dot.neon.s
-        ${PROJECT_SOURCE_DIR}/modules/math/NE10_cross.neon.s
-        ${PROJECT_SOURCE_DIR}/modules/math/NE10_mulmat.neon.s
-        ${PROJECT_SOURCE_DIR}/modules/math/NE10_mulcmatvec.neon.s
-        ${PROJECT_SOURCE_DIR}/modules/math/NE10_detmat.neon.s
-        ${PROJECT_SOURCE_DIR}/modules/math/NE10_invmat.neon.s
-        ${PROJECT_SOURCE_DIR}/modules/math/NE10_transmat.neon.s
-        ${PROJECT_SOURCE_DIR}/modules/math/NE10_identitymat.neon.s
-    )
-if(IOS_PLATFORM)
-    convert_gas(NE10_MATH_NEON_SRCS NE10_MATH_IOS_NEON_SRCS)
-    #message(STATUS "convert_gas:${NE10_MATH_IOS_NEON_SRCS}")
-    set_file_to_c(NE10_MATH_IOS_NEON_SRCS)
-else(IOS_PLATFORM)
-    set_file_to_c(NE10_MATH_NEON_SRCS)
-endif(IOS_PLATFORM)
+    # Assembly (.neon.s) files are only for armv7, not aarch64
+    if("${NE10_TARGET_ARCH}" STREQUAL "armv7")
+        set(NE10_MATH_NEON_SRCS
+            ${PROJECT_SOURCE_DIR}/modules/math/NE10_abs.neon.s
+            ${PROJECT_SOURCE_DIR}/modules/math/NE10_add.neon.s
+            ${PROJECT_SOURCE_DIR}/modules/math/NE10_div.neon.s
+            ${PROJECT_SOURCE_DIR}/modules/math/NE10_len.neon.s
+            ${PROJECT_SOURCE_DIR}/modules/math/NE10_mla.neon.s
+            ${PROJECT_SOURCE_DIR}/modules/math/NE10_mul.neon.s
+            ${PROJECT_SOURCE_DIR}/modules/math/NE10_normalize.neon.s
+            ${PROJECT_SOURCE_DIR}/modules/math/NE10_sub.neon.s
+            ${PROJECT_SOURCE_DIR}/modules/math/NE10_dot.neon.s
+            ${PROJECT_SOURCE_DIR}/modules/math/NE10_cross.neon.s
+            ${PROJECT_SOURCE_DIR}/modules/math/NE10_mulmat.neon.s
+            ${PROJECT_SOURCE_DIR}/modules/math/NE10_mulcmatvec.neon.s
+            ${PROJECT_SOURCE_DIR}/modules/math/NE10_detmat.neon.s
+            ${PROJECT_SOURCE_DIR}/modules/math/NE10_invmat.neon.s
+            ${PROJECT_SOURCE_DIR}/modules/math/NE10_transmat.neon.s
+            ${PROJECT_SOURCE_DIR}/modules/math/NE10_identitymat.neon.s
+        )
+        if(IOS_PLATFORM)
+            convert_gas(NE10_MATH_NEON_SRCS NE10_MATH_IOS_NEON_SRCS)
+            #message(STATUS "convert_gas:${NE10_MATH_IOS_NEON_SRCS}")
+            set_file_to_c(NE10_MATH_IOS_NEON_SRCS)
+        else(IOS_PLATFORM)
+            set_file_to_c(NE10_MATH_NEON_SRCS)
+        endif(IOS_PLATFORM)
+    endif()
 
     # Add math init files.
     set(NE10_MATH_INIT_SRCS
@@ -164,11 +172,13 @@ endif(IOS_PLATFORM)
     set(NE10_INIT_SRCS ${NE10_INIT_SRCS} ${NE10_MATH_INIT_SRCS})
     set(NE10_C_SRCS ${NE10_C_SRCS} ${NE10_MATH_C_SRCS})
     set(NE10_INTRINSIC_SRCS ${NE10_INTRINSIC_SRCS} ${NE10_MATH_INTRINSIC_SRCS})
-    if(IOS_PLATFORM)
-        set(NE10_NEON_SRCS ${NE10_NEON_SRCS} ${NE10_MATH_IOS_NEON_SRCS})
-    else(IOS_PLATFORM)
-        set(NE10_NEON_SRCS ${NE10_NEON_SRCS} ${NE10_MATH_NEON_SRCS})
-    endif(IOS_PLATFORM)
+    if("${NE10_TARGET_ARCH}" STREQUAL "armv7")
+        if(IOS_PLATFORM)
+            set(NE10_NEON_SRCS ${NE10_NEON_SRCS} ${NE10_MATH_IOS_NEON_SRCS})
+        else(IOS_PLATFORM)
+            set(NE10_NEON_SRCS ${NE10_NEON_SRCS} ${NE10_MATH_NEON_SRCS})
+        endif(IOS_PLATFORM)
+    endif()
 
 endif()
 

@@ -31,8 +31,14 @@
 
 ne10_result_t ne10_init_math (int is_NEON_available)
 {
+#ifndef NE10_NO_MATH_ASM_NEON
     if (NE10_OK == is_NEON_available)
     {
+#else
+    // For aarch64, assembly NEON functions are not available, use C implementations
+    if (0)
+    {
+#endif
         ne10_addc_float = ne10_addc_float_neon;
         ne10_addc_vec2f = ne10_addc_vec2f_neon;
         ne10_addc_vec3f = ne10_addc_vec3f_neon;

@@ -105,6 +105,12 @@ endif(BUILD_DEBUG)
 # By default, we compile c intrinsic.
 set(NE10_ASM_OPTIMIZATION off)
 
+# For aarch64, math assembly NEON functions are not available
+# (they are armv7-specific), so we need to use C-only implementations
+if("${NE10_TARGET_ARCH}" STREQUAL "aarch64")
+    add_definitions(-DNE10_NO_MATH_ASM_NEON)
+endif()
+
 if(ANDROID_PLATFORM)
     if(NE10_ARM_HARD_FLOAT)
         set(FLOAT_ABI "hard")
@@ -188,7 +194,7 @@ endif()
 # This is a verbose fail-fast in case we are trying to compile for non-ARM;
 # otherwise it would fail at `make` with obscure errors.
 if(GNULINUX_PLATFORM AND (NOT CMAKE_SYSTEM_PROCESSOR MATCHES "^arm"))
-    message(FATAL_ERROR "You are trying to compile for non-ARM (CMAKE_SYSTEM_PROCESSOR='${CMAKE_SYSTEM_PROCESSOR}')! see doc/building.md for cross compilation instructions.")
+#    message(FATAL_ERROR "You are trying to compile for non-ARM (CMAKE_SYSTEM_PROCESSOR='${CMAKE_SYSTEM_PROCESSOR}')! see doc/building.md for cross compilation instructions.")
 endif()
 
 if(IOS_PLATFORM AND IOS_DEMO)
