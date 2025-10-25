@@ -1,0 +1,9 @@
+/home/roydouek/Ne10/build/CMakeFiles/edit_cache.dir
+/home/roydouek/Ne10/build/CMakeFiles/rebuild_cache.dir
+/home/roydouek/Ne10/build/modules/CMakeFiles/NE10.dir
+/home/roydouek/Ne10/build/modules/CMakeFiles/edit_cache.dir
+/home/roydouek/Ne10/build/modules/CMakeFiles/rebuild_cache.dir
+/home/roydouek/Ne10/build/test/CMakeFiles/NE10_dsp_unit_test_static_performance.dir
+/home/roydouek/Ne10/build/test/CMakeFiles/NE10_imgproc_unit_test_static_performance.dir
+/home/roydouek/Ne10/build/test/CMakeFiles/edit_cache.dir
+/home/roydouek/Ne10/build/test/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,42 @@
+modules/CMakeFiles/NE10.dir/math/NE10_invmat.c.o: \
+ /home/roydouek/Ne10/modules/math/NE10_invmat.c \
+ /opt/rz-vlp/5.0.8/sysroots/cortexa55-poky-linux/usr/include/stdc-predef.h \
+ /home/roydouek/Ne10/inc/NE10_types.h \
+ /opt/rz-vlp/5.0.8/sysroots/cortexa55-poky-linux/usr/include/assert.h \
+ /opt/rz-vlp/5.0.8/sysroots/cortexa55-poky-linux/usr/include/features.h \
+ /opt/rz-vlp/5.0.8/sysroots/cortexa55-poky-linux/usr/include/features-time64.h \
+ /opt/rz-vlp/5.0.8/sysroots/cortexa55-poky-linux/usr/include/bits/wordsize.h \
+ /opt/rz-vlp/5.0.8/sysroots/cortexa55-poky-linux/usr/include/bits/timesize.h \
+ /opt/rz-vlp/5.0.8/sysroots/cortexa55-poky-linux/usr/include/bits/timesize-64.h \
+ /opt/rz-vlp/5.0.8/sysroots/cortexa55-poky-linux/usr/include/sys/cdefs.h \
+ /opt/rz-vlp/5.0.8/sysroots/cortexa55-poky-linux/usr/include/bits/long-double.h \
+ /opt/rz-vlp/5.0.8/sysroots/cortexa55-poky-linux/usr/include/bits/long-double-64.h \
+ /opt/rz-vlp/5.0.8/sysroots/cortexa55-poky-linux/usr/include/gnu/stubs.h \
+ /opt/rz-vlp/5.0.8/sysroots/cortexa55-poky-linux/usr/include/gnu/stubs-64.h \
+ /opt/rz-vlp/5.0.8/sysroots/cortexa55-poky-linux/usr/include/gnu/stubs-lp64.h \
+ /opt/rz-vlp/5.0.8/sysroots/x86_64-pokysdk-linux/usr/lib/aarch64-poky-linux/gcc/aarch64-poky-linux/13.3.0/include/stdint.h \
+ /opt/rz-vlp/5.0.8/sysroots/cortexa55-poky-linux/usr/include/stdint.h \
+ /opt/rz-vlp/5.0.8/sysroots/cortexa55-poky-linux/usr/include/bits/libc-header-start.h \
+ /opt/rz-vlp/5.0.8/sysroots/cortexa55-poky-linux/usr/include/bits/types.h \
+ /opt/rz-vlp/5.0.8/sysroots/cortexa55-poky-linux/usr/include/bits/typesizes.h \
+ /opt/rz-vlp/5.0.8/sysroots/cortexa55-poky-linux/usr/include/bits/typesizes-64.h \
+ /opt/rz-vlp/5.0.8/sysroots/cortexa55-poky-linux/usr/include/bits/time64.h \
+ /opt/rz-vlp/5.0.8/sysroots/cortexa55-poky-linux/usr/include/bits/wchar.h \
+ /opt/rz-vlp/5.0.8/sysroots/cortexa55-poky-linux/usr/include/bits/stdint-intn.h \
+ /opt/rz-vlp/5.0.8/sysroots/cortexa55-poky-linux/usr/include/bits/stdint-uintn.h \
+ /opt/rz-vlp/5.0.8/sysroots/cortexa55-poky-linux/usr/include/bits/stdint-least.h \
+ /home/roydouek/Ne10/common/macros.h /home/roydouek/Ne10/common/factor.h \
+ /home/roydouek/Ne10/modules/math/NE10_detmat.c.h \
+ /opt/rz-vlp/5.0.8/sysroots/cortexa55-poky-linux/usr/include/math.h \
+ /opt/rz-vlp/5.0.8/sysroots/cortexa55-poky-linux/usr/include/bits/math-vector.h \
+ /opt/rz-vlp/5.0.8/sysroots/cortexa55-poky-linux/usr/include/bits/math-vector-64.h \
+ /opt/rz-vlp/5.0.8/sysroots/cortexa55-poky-linux/usr/include/bits/libm-simd-decl-stubs.h \
+ /opt/rz-vlp/5.0.8/sysroots/cortexa55-poky-linux/usr/include/bits/floatn.h \
+ /opt/rz-vlp/5.0.8/sysroots/cortexa55-poky-linux/usr/include/bits/floatn-64.h \
+ /opt/rz-vlp/5.0.8/sysroots/cortexa55-poky-linux/usr/include/bits/floatn-common.h \
+ /opt/rz-vlp/5.0.8/sysroots/cortexa55-poky-linux/usr/include/bits/flt-eval-method.h \
+ /opt/rz-vlp/5.0.8/sysroots/cortexa55-poky-linux/usr/include/bits/fp-logb.h \
+ /opt/rz-vlp/5.0.8/sysroots/cortexa55-poky-linux/usr/include/bits/fp-fast.h \
+ /opt/rz-vlp/5.0.8/sysroots/cortexa55-poky-linux/usr/include/bits/fp-fast-64.h \
+ /opt/rz-vlp/5.0.8/sysroots/cortexa55-poky-linux/usr/include/bits/mathcalls-helper-functions.h \
+ /opt/rz-vlp/5.0.8/sysroots/cortexa55-poky-linux/usr/include/bits/mathcalls.h
